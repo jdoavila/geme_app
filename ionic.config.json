@@ -1,0 +1,7 @@
+{
+  "name": "geme_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
