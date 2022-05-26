@@ -1,17 +1,26 @@
 import React, { useState, useContext } from 'react';
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonList, IonItem, IonTextarea, IonLabel, useIonToast, NavContext } from '@ionic/react';
-import { closeOutline, save, logIn } from 'ionicons/icons'
-
+import { closeOutline, save, logIn } from 'ionicons/icons';
+import { Geolocation } from '@capacitor/geolocation';
 
 const NewMessage: React.FC<{
     handleDismiss: () => void;
-    saveMessage: (messageText: String) => void;
+    saveMessage: (messageText: String, lat: Number, lng: Number) => void;
     logged: boolean;
 }> = ({handleDismiss, saveMessage, logged}) => {
     const [message, setMessage] = useState<string>('');
     const [presentToast, dismissToast] = useIonToast();
     const [isEmpty, setIsEmpty] = useState<boolean>(true);
     const {navigate} = useContext(NavContext);
+
+    const prepareToSaveMessage = async () => {
+        if (message.length > 1){
+            const coordinates = await Geolocation.getCurrentPosition();
+            saveMessage(message, coordinates.coords.latitude, coordinates.coords.longitude);
+        } else {
+            presentToast('You must write some text to leave a message here.', 3000);
+        }
+    };
 
     return (
         <IonPage>
@@ -39,13 +48,7 @@ const NewMessage: React.FC<{
                     </IonItem>
                 </IonList>
                 {logged &&
-                <IonButton disabled={isEmpty} fill='solid' expand='block' color='success' onClick={() => {
-                    if (message.length > 1){
-                        saveMessage(message);
-                    } else {
-                        presentToast('You must write some text to save.', 3000);
-                    }
-                    }}><IonIcon icon={save}/>&nbsp;&nbsp;Save</IonButton>
+                <IonButton disabled={isEmpty} fill='solid' expand='block' color='success' onClick={prepareToSaveMessage}><IonIcon icon={save}/>&nbsp;&nbsp;Save</IonButton>
                 }
                 {!logged &&
                 <h2>You must be logged in the app to leve a message in actual location.</h2>

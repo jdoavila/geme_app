@@ -15,6 +15,7 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './pages/Login';
+import UserProfile from './pages/UserProfile';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -57,6 +58,7 @@ const App: React.FC = () => (
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/user/profile/:id" component={UserProfile} />
           <Route exact path="/">
             <Redirect to="/tab1" />
           </Route>

@@ -1,22 +1,22 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonBadge, IonItem, IonLabel, IonButton, useIonModal, useIonViewWillEnter, useIonToast } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonBadge, IonItem, IonLabel, IonButton, useIonModal, useIonViewWillEnter, useIonToast, NavContext } from '@ionic/react';
 import './Tab1.css';
 import { add, person, pin, heartOutline, shareOutline, filterOutline } from 'ionicons/icons';
 import NewMessage from '../components/NewMessage';
 import {Storage} from '@capacitor/storage';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 const Tab1: React.FC = () => {
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
   const [logged, setLogged] = useState(false);
   const [presentToast, dismissToast] = useIonToast();
+  const { navigate } = useContext(NavContext);
   
   const handleDismiss = () => {
     dismissNewMessage();
   }
 
-  const saveMessage = (messageText: String) => {
+  const saveMessage = (messageText: String, lat: Number, lng: Number) => {
     console.log('vamos a guardar el nuevo mensaje', messageText.length);
   }
   const [presentNewMessage, dismissNewMessage] = useIonModal(NewMessage, {handleDismiss, saveMessage, logged});
@@ -61,7 +61,7 @@ const Tab1: React.FC = () => {
         {/* Comienzan las cards */}
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle><IonBadge color="tertiary"><IonIcon icon={person} /> @jdoavila</IonBadge>&nbsp;&nbsp;&nbsp;<IonBadge color="medium"><IonIcon icon={pin} /> 17.8223, -87.3322</IonBadge></IonCardSubtitle>
+            <IonCardSubtitle><IonBadge color="tertiary" onClick={()=>{navigate('/user/profile/1')}}><IonIcon icon={person} /> @jdoavila</IonBadge>&nbsp;&nbsp;&nbsp;<IonBadge color="medium"><IonIcon icon={pin} /> 17.8223, -87.3322</IonBadge></IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
             Estamos probando poner un parrafo dentro de una card para ver como se mostraría ya con texto real, bien podríamos haber puesto un lorem ipsum pero nos alocamos escribiendo nuestro propio texto de pruebas...
