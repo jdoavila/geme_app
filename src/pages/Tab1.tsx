@@ -4,6 +4,7 @@ import { add, person, pin, heartOutline, shareOutline, filterOutline } from 'ion
 import NewMessage from '../components/NewMessage';
 import {Storage} from '@capacitor/storage';
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Tab1: React.FC = () => {
   const [accessToken, setAccessToken] = useState('');
@@ -61,7 +62,7 @@ const Tab1: React.FC = () => {
         {/* Comienzan las cards */}
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle><IonBadge color="tertiary" onClick={()=>{navigate('/user/profile/1')}}><IonIcon icon={person} /> @jdoavila</IonBadge>&nbsp;&nbsp;&nbsp;<IonBadge color="medium"><IonIcon icon={pin} /> 17.8223, -87.3322</IonBadge></IonCardSubtitle>
+            <IonCardSubtitle><Link to="/user/profile/1" ><IonBadge color="tertiary"><IonIcon icon={person} /> @jdoavila</IonBadge></Link>&nbsp;&nbsp;&nbsp;<IonBadge color="medium"><IonIcon icon={pin} /> 17.8223, -87.3322</IonBadge></IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
             Estamos probando poner un parrafo dentro de una card para ver como se mostraría ya con texto real, bien podríamos haber puesto un lorem ipsum pero nos alocamos escribiendo nuestro propio texto de pruebas...

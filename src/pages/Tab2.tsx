@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBadge, IonIcon } from '@ionic/react';
+import { chatbubbleOutline, heartOutline } from 'ionicons/icons';
 import './Tab2.css';
 
 const Tab2: React.FC = () => {
@@ -7,16 +7,35 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Following users</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+      <IonContent>
+        <IonList>
+          <IonItem routerLink='/user/profile/1'>
+            <IonLabel><h1>@jdoavila</h1></IonLabel>
+            <IonLabel slot='end'><IonBadge color="success"><IonIcon icon={chatbubbleOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+            <IonLabel slot='end'><IonBadge color="tertiary"><IonIcon icon={heartOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+          </IonItem>
+
+          <IonItem routerLink='/user/profile/1'>
+            <IonLabel><h1>@jdoavila</h1></IonLabel>
+            <IonLabel slot='end'><IonBadge color="success"><IonIcon icon={chatbubbleOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+            <IonLabel slot='end'><IonBadge color="tertiary"><IonIcon icon={heartOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+          </IonItem>
+
+          <IonItem routerLink='/user/profile/1'>
+            <IonLabel><h1>@jdoavila</h1></IonLabel>
+            <IonLabel slot='end'><IonBadge color="success"><IonIcon icon={chatbubbleOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+            <IonLabel slot='end'><IonBadge color="tertiary"><IonIcon icon={heartOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+          </IonItem>
+
+          <IonItem routerLink='/user/profile/1'>
+            <IonLabel><h1>@jdoavila</h1></IonLabel>
+            <IonLabel slot='end'><IonBadge color="success"><IonIcon icon={chatbubbleOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+            <IonLabel slot='end'><IonBadge color="tertiary"><IonIcon icon={heartOutline}/>&nbsp; 120K</IonBadge></IonLabel>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
